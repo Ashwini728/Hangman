@@ -1,0 +1,266 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background: linear-gradient(45deg, #8e44ad, #3498db, #1abc9c); /* Smooth gradient background */
+  background-size: 400% 400%;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  animation: gradientAnimation 10s ease infinite; /* Smooth transition animation */
+}
+h1 {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 36px;
+  font-weight: bold;
+}
+.figure-container{
+  text-align: center;
+}
+
+.game-container {
+  padding: 20px 30px;
+  position: relative;
+  margin: auto;
+  height: 450px;
+  width: 600px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.6); /* Dark transparent background */
+  border-radius: 10px;
+  border: 3px solid #2980b9; /* Light blue border */
+  box-shadow: 0px 0px 10px rgba(250, 249, 249, 0.884); /* Shadow for depth */
+}
+
+.figure-container {
+  fill: transparent;
+  stroke: #fff;
+  stroke-width: 4px;
+  stroke-linecap: round;
+}
+
+.figure-part {
+  display: none;
+}
+
+.wrong-letters-container {
+  position: absolute;
+  top: 50px;
+  right: 100px;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.wrong-letters-container p {
+  margin: 0 0 5px;
+}
+
+.wrong-letters-container span {
+  font-size: 24px;
+}
+
+.word {
+  display: flex;
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.letter {
+  border-bottom: 3px solid #3194d6;
+  display: inline-flex;
+  font-size: 30px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 3px;
+  height: 50px;
+  width: 30px;
+}
+p{
+  text-align: center;
+}
+.popup-container {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.popup-container.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popup {
+  background: #2980b9;
+  border-radius: 10px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  text-align: center;
+  width: 300px;
+}
+
+.popup h2 {
+  font-size: 24px;
+  color: white;
+}
+
+.popup h3 {
+  font-size: 18px;
+  color: #f1c40f;
+}
+
+.popup button {
+  cursor: pointer;
+  background-color: #fff;
+  color: #2980b9;
+  border: 2px solid #2980b9;
+  margin-top: 20px;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.popup button:hover {
+  background-color: #032338;
+  color: #fff;
+}
+
+.popup button:active {
+  transform: scale(0.98);
+}
+
+.popup button:focus {
+  outline: 0;
+}
+
+.notification-container {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px 10px 0 0;
+  padding: 20px 10px;
+  position: relative;
+  bottom: -60px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.notification-container p {
+  margin: 0;
+}
+
+.notification-container.show {
+  transform: translateY(-60px);
+}
+/* General styling for the popup container */
+.popup-container {
+  background-color: rgba(0, 0, 0, 0.7);  /* Semi-transparent background */
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;  /* Initially hidden */
+  visibility: hidden;  /* Initially hidden */
+  transition: opacity 0.5s ease, visibility 0s 0.5s, background-color 0.5s ease;  /* Fade in/out for background */
+}
+
+/* When the 'show' class is added, make popup visible */
+.popup-container.show {
+  opacity: 1;  /* Fade in */
+  visibility: visible;  /* Make visible */
+  background-color: rgba(0, 0, 0, 0.9);  /* Darker background when showing */
+  transition: opacity 0.5s ease, visibility 0s, background-color 0.5s ease;  /* Smooth transition for background */
+}
+
+/* Popup styling */
+.popup {
+  background: #2980b9;
+  border-radius: 5px;
+  box-shadow: 0 15px 10px 3px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  color: white;
+  transform: translateY(-10px);
+  transition: transform 0.3s ease;
+}
+
+/* Button styling */
+.popup button {
+  cursor: pointer;
+  background-color: #fff;
+  color: #2980b9;
+  border: 0;
+  margin-top: 20px;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.popup button:active {
+  transform: scale(0.98);
+}
+
+.popup button:focus {
+  outline: 0;
+}
+
+/* Optional: Add bounce effect to the popup when it appears */
+.popup-container.show .popup {
+  transform: translateY(0);
+}
+/* Animation for gradient background */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+h1 {
+  text-align: center;
+  margin: 20px 0 10px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #dee4e7; /* Vibrant yellow-orange */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Add depth with a shadow */
+  animation: glow 2s infinite alternate; /* Glow effect */
+}
+
+p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #ecf0f1; /* Soft off-white for better readability */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Subtle shadow for text */
+  text-align: center;
+}
+
+/* Glow animation for h1 */
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #8052bd, 0 0 10px #79216dc7, 0 0 20px #700883, 0 0 30px #22aee6;
+  }
+  to {
+    text-shadow: 0 0 10px #13a7ec, 0 0 20px #547db3, 0 0 30px #e67e22, 0 0 40px #96c3ce;
+  }
