@@ -23,7 +23,8 @@ This **Hangman Game** is a fun and interactive word-guessing game built using **
 ## 📸 Screenshots
 ### 🖥️ Gameplay Preview
 
-![Gameplay Screenshot](./assets/ss1.png)
+![Gameplay Screenshot](./src/assets/ss1.png)
+
 
 
 
